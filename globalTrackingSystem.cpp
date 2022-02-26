@@ -1,10 +1,10 @@
-#include "CarTrackingSystem.h"
+#include "globalTrackingSystem.h"
 #include "Coord.h"
 #include "Car.h"
 #include "Path.h"
 #include "Rotations.h"
 
-CarTrackingSystem::CarTrackingSystem(Car* honda1, Path* road1)
+globalTrackingSystem::globalTrackingSystem(Car* honda1, Path* road1)
 {
 	road = road1;
 	honda = honda1;
@@ -15,7 +15,7 @@ CarTrackingSystem::CarTrackingSystem(Car* honda1, Path* road1)
 
 
 
-bool CarTrackingSystem::CalcLookAheadCoord()
+bool globalTrackingSystem::CalcLookAheadCoord()
 {
 
 	Rotations Rot;
@@ -51,7 +51,7 @@ bool CarTrackingSystem::CalcLookAheadCoord()
 
 }
 
-bool CarTrackingSystem::checkForLookaheadIntersection(Coord a, Coord b, double lookAheadRange)
+bool globalTrackingSystem::checkForLookaheadIntersection(Coord a, Coord b, double lookAheadRange)
 { 
 	double aRange;
 	double bRange;

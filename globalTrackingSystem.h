@@ -4,11 +4,11 @@
 #include "Path.h"
 #include "Rotations.h"
 
-class CarTrackingSystem
+class globalTrackingSystem
 {
 public:
 
-	CarTrackingSystem(Car* honda1, Path* road1);
+	globalTrackingSystem(Car* honda1, Path* road1);
 
 	unsigned int lastPathIndex;
 
