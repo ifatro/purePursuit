@@ -7,7 +7,7 @@
 #include "Coord.h"
 #include "Path.h"
 #include "Rotations.h"
-#include "globalTrackingSystem.h"
+#include "SimulatedTrackingSystem.h"
 
 #define PI 3.14159265359
 
@@ -31,7 +31,7 @@ int main()
 
     Car Honda(initPsi_deg * PI / 180);
     Path Road(pathType,1000);
-    globalTrackingSystem globalTrackingSystem1(&Honda, &Road);
+    SimulatedTrackingSystem SimulatedTrackingSystem1(&Honda, &Road);
 
 
     double T;
@@ -41,10 +41,10 @@ int main()
 
 
 
-        pathFound = globalTrackingSystem1.CalcLookAheadCoord();
+        pathFound = SimulatedTrackingSystem1.CalcLookAheadCoord();
         if (pathFound)
         {
-            Honda.calcWheelAngCmd(globalTrackingSystem1.PathInCarCoord);
+            Honda.calcWheelAngCmd(SimulatedTrackingSystem1.PathInCarCoord);
             Honda.carServo.simpleServo(Honda.WheelAngCmd);
             Honda.updateCarDynamics();
 
@@ -56,7 +56,7 @@ int main()
 
             unsigned int index;
             Coord PathInGlobalCoord;
-            index = globalTrackingSystem1.lastPathIndex;
+            index = SimulatedTrackingSystem1.lastPathIndex;
             PathInGlobalCoord.x = Road.iPath[index].x;
             PathInGlobalCoord.y = Road.iPath[index].y;
             PathInGlobalCoord.z = Road.iPath[index].z;

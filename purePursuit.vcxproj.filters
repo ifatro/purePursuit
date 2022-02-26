@@ -18,7 +18,7 @@
     <ClCompile Include="Car.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="globalTrackingSystem.cpp">
+    <ClCompile Include="SimulatedTrackingSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Coord.cpp">
@@ -41,7 +41,7 @@
     <ClInclude Include="Car.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="globalTrackingSystem.h">
+    <ClInclude Include="SimulatedTrackingSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Path.h">

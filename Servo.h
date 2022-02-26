@@ -17,6 +17,6 @@ protected:
 
 	double lamdaAngLimiter;
 	double lamdaRateLimiter;
-
+	double lamdaMeasPrev;
 };
 

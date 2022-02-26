@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
-    <ClCompile Include="globalTrackingSystem.cpp" />
+    <ClCompile Include="SimulatedTrackingSystem.cpp" />
     <ClCompile Include="Coord.cpp" />
     <ClCompile Include="Path.cpp" />
     <ClCompile Include="PurePursuitAssignment.cpp" />
@@ -149,7 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
-    <ClInclude Include="globalTrackingSystem.h" />
+    <ClInclude Include="SimulatedTrackingSystem.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="Rotations.h" />
     <ClInclude Include="Servo.h" />
