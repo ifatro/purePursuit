@@ -45,6 +45,7 @@ int main()
         if (pathFound)
         {
             Honda.calcWheelAngCmd(globalTrackingSystem1.PathInCarCoord);
+            Honda.carServo.simpleServo(Honda.WheelAngCmd);
             Honda.updateCarDynamics();
 
 

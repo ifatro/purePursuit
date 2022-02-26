@@ -1,4 +1,5 @@
 #include "Car.h"
+#include "Servo.h"
 #include <math.h>
 Car::Car(double initPsi)
 {
@@ -12,6 +13,7 @@ Car::Car(double initPsi)
 	TurnRadius = 100000;
 	lookAheadRange = 30;
 	WheelAngCmd = 0;
+	
 
 
 
@@ -49,9 +51,11 @@ void Car::calcWheelAngCmd(Coord PathInCarCoord)
 void Car::updateCarDynamics()
 {
 
+	double lamda;
+	lamda=this->carServo.lamdaMeas;
 	double dt;
 	dt = 1;
-	this->psi_dot = this->velocity * tan(this->WheelAngCmd) / this->carLength;
+	this->psi_dot = this->velocity * tan(lamda) / this->carLength;
 	this->x_dot = this->velocity * cos(this->psi);
 	this->y_dot = this->velocity * sin(this->psi);
 
