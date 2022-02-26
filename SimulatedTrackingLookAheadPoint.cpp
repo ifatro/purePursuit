@@ -1,10 +1,10 @@
-#include "SimulatedTrackingSystem.h"
+#include "SimulatedTrackingLookAheadPoint.h"
 #include "Coord.h"
 #include "Car.h"
 #include "Path.h"
 #include "Rotations.h"
 
-SimulatedTrackingSystem::SimulatedTrackingSystem(Car* honda1, Path* road1)
+SimulatedTrackingLookAheadPoint::SimulatedTrackingLookAheadPoint(Car* honda1, Path* road1)
 {
 	road = road1;
 	honda = honda1;
@@ -15,7 +15,7 @@ SimulatedTrackingSystem::SimulatedTrackingSystem(Car* honda1, Path* road1)
 
 
 
-bool SimulatedTrackingSystem::CalcLookAheadCoord()
+bool SimulatedTrackingLookAheadPoint::CalcLookAheadCoord()
 {
 
 	Rotations Rot;
@@ -51,7 +51,7 @@ bool SimulatedTrackingSystem::CalcLookAheadCoord()
 
 }
 
-bool SimulatedTrackingSystem::checkForLookaheadIntersection(Coord a, Coord b, double lookAheadRange)
+bool SimulatedTrackingLookAheadPoint::checkForLookaheadIntersection(Coord a, Coord b, double lookAheadRange)
 { 
 	double aRange;
 	double bRange;

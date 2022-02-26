@@ -1,5 +1,8 @@
 #include "Coord.h"
 
+
+// Coord is a class representing xyz cartesian coordinate system
+
 Coord::Coord()
 {
 	x = 0;

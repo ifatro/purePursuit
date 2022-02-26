@@ -7,7 +7,7 @@
 #include "Coord.h"
 #include "Path.h"
 #include "Rotations.h"
-#include "SimulatedTrackingSystem.h"
+#include "SimulatedTrackingLookAheadPoint.h"
 
 #define PI 3.14159265359
 
@@ -31,7 +31,7 @@ int main()
 
     Car Honda(initPsi_deg * PI / 180);
     Path Road(pathType,1000);
-    SimulatedTrackingSystem SimulatedTrackingSystem1(&Honda, &Road);
+    SimulatedTrackingLookAheadPoint SimulatedTrackingLookAheadPoint1(&Honda, &Road);
 
 
     double T;
@@ -41,11 +41,11 @@ int main()
 
 
 
-        pathFound = SimulatedTrackingSystem1.CalcLookAheadCoord();
+        pathFound = SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord();
         if (pathFound)
         {
-            Honda.calcWheelAngCmd(SimulatedTrackingSystem1.PathInCarCoord);
-            Honda.carServo.simpleServo(Honda.WheelAngCmd);
+            Honda.carTrack1.calcWheelAngCmd(SimulatedTrackingLookAheadPoint1.PathInCarCoord);
+            Honda.carServo.simpleServo(Honda.carTrack1.WheelAngCmd);
             Honda.updateCarDynamics();
 
 
@@ -56,7 +56,7 @@ int main()
 
             unsigned int index;
             Coord PathInGlobalCoord;
-            index = SimulatedTrackingSystem1.lastPathIndex;
+            index = SimulatedTrackingLookAheadPoint1.lastPathIndex;
             PathInGlobalCoord.x = Road.iPath[index].x;
             PathInGlobalCoord.y = Road.iPath[index].y;
             PathInGlobalCoord.z = Road.iPath[index].z;
@@ -72,7 +72,7 @@ int main()
             std::cout << index;
             std::cout << "\n";
             std::cout << "WheelAngCmd: ";
-            std::cout << Honda.WheelAngCmd * 180 / PI;
+            std::cout << Honda.carTrack1.WheelAngCmd * 180 / PI;
             std::cout << "\n";
             //Road.printPath();
         }

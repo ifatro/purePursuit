@@ -4,11 +4,11 @@
 #include "Path.h"
 #include "Rotations.h"
 
-class SimulatedTrackingSystem
+class SimulatedTrackingLookAheadPoint
 {
 public:
 
-	SimulatedTrackingSystem(Car* honda1, Path* road1);
+	SimulatedTrackingLookAheadPoint(Car* honda1, Path* road1);
 
 	unsigned int lastPathIndex;
 

@@ -6,20 +6,19 @@ Car::Car(double initPsi)
 
 	psi = initPsi;
 	velocity=20;
-	carLength=1;
 	psi_dot = 0;
 	x_dot=0;
 	y_dot = 0;
-	TurnRadius = 100000;
+	carLength = 1;
 	lookAheadRange = 30;
-	WheelAngCmd = 0;
+	carTrack carTrack1(carLength, lookAheadRange);
 	
 
 
 
 }
 
-void Car::calcWheelAngCmd(Coord PathInCarCoord)
+/*void Car::calcWheelAngCmd(Coord PathInCarCoord)
 {
 
 	double alfa;
@@ -43,10 +42,12 @@ void Car::calcWheelAngCmd(Coord PathInCarCoord)
 	return;
 	end
 		Radius = abs(ld / (2 * sin(alfa)));
-	lamda = atan(2 * L * sin(alfa) / ld);*/
+	lamda = atan(2 * L * sin(alfa) / ld);
 
 
 }
+*/
+
 
 void Car::updateCarDynamics()
 {

@@ -18,7 +18,7 @@
     <ClCompile Include="Car.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SimulatedTrackingSystem.cpp">
+    <ClCompile Include="SimulatedTrackingLookAheadPoint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Coord.cpp">
@@ -36,12 +36,15 @@
     <ClCompile Include="Servo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="carTrack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SimulatedTrackingSystem.h">
+    <ClInclude Include="SimulatedTrackingLookAheadPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Path.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Servo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="carTrack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

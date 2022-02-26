@@ -140,7 +140,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
-    <ClCompile Include="SimulatedTrackingSystem.cpp" />
+    <ClCompile Include="carTrack.cpp" />
+    <ClCompile Include="SimulatedTrackingLookAheadPoint.cpp" />
     <ClCompile Include="Coord.cpp" />
     <ClCompile Include="Path.cpp" />
     <ClCompile Include="PurePursuitAssignment.cpp" />
@@ -149,7 +150,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
-    <ClInclude Include="SimulatedTrackingSystem.h" />
+    <ClInclude Include="carTrack.h" />
+    <ClInclude Include="SimulatedTrackingLookAheadPoint.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="Rotations.h" />
     <ClInclude Include="Servo.h" />
