@@ -10,7 +10,7 @@ public:
 
 
 	double lamdaMeas;
-	void simpleServo(double lamdaCmd);
+	void limiterServo(double lamdaCmd);
 	void fullServo(double lamdaCmd);
 
 protected:
@@ -18,5 +18,11 @@ protected:
 	double lamdaAngLimiter;
 	double lamdaRateLimiter;
 	double lamdaMeasPrev;
+
+	double inPrev;
+	double inPrevPrev;
+	double outPrev;
+	double outPrevPrev;
+	double a,b,c,d,e;
 };
 

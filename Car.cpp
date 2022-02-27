@@ -1,3 +1,4 @@
+#include "config.h"
 #include "Car.h"
 #include "Servo.h"
 #include <math.h>
@@ -9,7 +10,7 @@ Car::Car(double initPsi)
 	psi_dot = 0;
 	x_dot=0;
 	y_dot = 0;
-	carLength = 1;
+	carLength = fordFusionLength;
 	lookAheadRange = 30;
 	carTrack carTrack1(carLength, lookAheadRange);
 	
@@ -54,8 +55,6 @@ void Car::updateCarDynamics()
 
 	double lamda;
 	lamda=this->carServo.lamdaMeas;
-	double dt;
-	dt = 1;
 	this->psi_dot = this->velocity * tan(lamda) / this->carLength;
 	this->x_dot = this->velocity * cos(this->psi);
 	this->y_dot = this->velocity * sin(this->psi);

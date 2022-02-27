@@ -1,3 +1,4 @@
+#include "config.h"
 #include "SimulatedTrackingLookAheadPoint.h"
 #include "Coord.h"
 #include "Car.h"

@@ -3,20 +3,21 @@
 
 #include <iostream>
 #include <math.h>
+#include "config.h"
 #include "Car.h"
 #include "Coord.h"
 #include "Path.h"
 #include "Rotations.h"
 #include "SimulatedTrackingLookAheadPoint.h"
 
-#define PI 3.14159265359
+
 
 
 int main()
 {
 
     double initPsi_deg;
-    double pi = 3.141592653589793;
+
     
     unsigned int pathType;
 
@@ -36,7 +37,7 @@ int main()
 
     double T;
 
-    for (T = 0; T < 200 && pathFound; T++)
+    for (T = 0; T < 200 && pathFound; T=T+dt)
     {
 
 
@@ -45,7 +46,7 @@ int main()
         if (pathFound)
         {
             Honda.carTrack1.calcWheelAngCmd(SimulatedTrackingLookAheadPoint1.PathInCarCoord);
-            Honda.carServo.simpleServo(Honda.carTrack1.WheelAngCmd);
+            Honda.carServo.fullServo(Honda.carTrack1.WheelAngCmd);
             Honda.updateCarDynamics();
 
 
