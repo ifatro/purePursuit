@@ -19,11 +19,12 @@ public:
 	Coord globalCoord;
 	Coord egoCoord;
 	Servo carServo;
+	carTrack basicCarTrack;
 	double velocity;
 	double psi;
 	double lookAheadRange;
 	double carLength;
-	carTrack carTrack1;
+	
 
 protected:
 	double psi_dot; //angular velocity

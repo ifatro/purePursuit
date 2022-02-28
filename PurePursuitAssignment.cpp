@@ -45,8 +45,8 @@ int main()
         pathFound = SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord();
         if (pathFound)
         {
-            Honda.carTrack1.calcWheelAngCmd(SimulatedTrackingLookAheadPoint1.PathInCarCoord);
-            Honda.carServo.fullServo(Honda.carTrack1.WheelAngCmd);
+            Honda.basicCarTrack.calcWheelAngCmd(SimulatedTrackingLookAheadPoint1.PathInCarCoord);
+            Honda.carServo.fullServo(Honda.basicCarTrack.WheelAngCmd);
             Honda.updateCarDynamics();
 
 
@@ -73,7 +73,7 @@ int main()
             std::cout << index;
             std::cout << "\n";
             std::cout << "WheelAngCmd: ";
-            std::cout << Honda.carTrack1.WheelAngCmd * 180 / PI;
+            std::cout << Honda.basicCarTrack.WheelAngCmd * 180 / PI;
             std::cout << "\n";
             //Road.printPath();
         }
