@@ -6,12 +6,14 @@ public:
 
 
 	Servo();
-	Servo(double lamdaAngLimiter1, double lamdaRateLimiter1);
+	//Servo(double lamdaAngLimiter1, double lamdaRateLimiter1);
 
 
 	double lamdaMeas;
-	void limiterServo(double lamdaCmd);
+	double limiterRateServo(double lamdaCmdIn);
+	double limiterServo(double lamdaCmdIn);
 	void fullServo(double lamdaCmd);
+	double  controllerServo(double lamdaIn);
 
 protected:
 

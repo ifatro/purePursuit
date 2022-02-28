@@ -60,8 +60,14 @@ void Car::updateCarDynamics()
 	this->y_dot = this->velocity * sin(this->psi);
 
 	this->psi = this->psi + dt * this->psi_dot;
+
+	this->psi = fmod(this->psi, 2 * PI);
+
 	this->globalCoord.x = this->globalCoord.x + dt* this->x_dot;
 	this->globalCoord.y = this->globalCoord.y + dt * this->y_dot;
+
+
+
 
 
 	/*lamda = Car.lamdaDyn;

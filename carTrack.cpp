@@ -1,10 +1,10 @@
 #include "carTrack.h"
-
+#include "config.h"
 
 
 carTrack::carTrack()
 {
-	carLength = 1;
+	carLength = fordFusionLength;
 	lookAheadRange = 30;
 	TurnRadius = 10000;
 	WheelAngCmd = 0;

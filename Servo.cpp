@@ -21,63 +21,143 @@ Servo::Servo()
 	inPrevPrev = 0;
 	outPrev = 0;
 	outPrevPrev = 0;
-	   //0.9653 z + 0.1822
-		//----------------------
-		//z ^ 2 + 0.1325 z + 0.015
-	a = 0.044;
-	b = 0.089;
-	c = 0.044;
-	d = 1.32;
-	e = 0.50;
+
+
+	 //              0.1736 z ^ 2 + 0.3471 z + 0.1736
+	//	z ^ (-2) * ------------------------------
+	//	           z ^ 2 - 0.5322 z + 0.2265
+
+
+
+	a = 0.1736;
+	b = 0.3471;
+	c = 0.1736;
+	d = 0.5322;
+	e = 0.2265;
 
 
 }
 
-Servo::Servo(double lamdaAngLimiter1, double lamdaRateLimiter1)
+/*Servo::Servo(double lamdaAngLimiter1, double lamdaRateLimiter1)
 {
 	lamdaAngLimiter = lamdaAngLimiter1;
 	lamdaRateLimiter = lamdaRateLimiter1;
 	lamdaMeas = 0;
 	lamdaMeasPrev = 0;
 
-}
 
-void Servo::limiterServo(double lamdaCmd)
+	//sevo second degree filter parameters:
+	inPrev = 0;
+	inPrevPrev = 0;
+	outPrev = 0;
+	outPrevPrev = 0;
+
+
+	//              0.1736 z ^ 2 + 0.3471 z + 0.1736
+   //	z ^ (-2) * ------------------------------
+   //	           z ^ 2 - 0.5322 z + 0.2265
+
+	a = 0.1736;
+	b = 0.3471;
+	c = 0.1736;
+	d = 0.5322;
+	e = 0.2265;
+
+
+
+}*/
+
+double Servo::limiterServo(double lamdaCmdIn)
 {
-	if (fabs(lamdaCmd) > lamdaAngLimiter)
-	
+
+
+	double lamdaCmdOut;
+	lamdaCmdOut = lamdaCmdIn;
+
+	if (fabs(lamdaCmdIn) > lamdaAngLimiter)
+
 	{
-		if (lamdaCmd > 0)
+		if (lamdaCmdIn > 0)
 		{
 
-			lamdaMeas = lamdaAngLimiter;
+			lamdaCmdOut = lamdaAngLimiter;
 		}
 		else
 		{
 
-			lamdaMeas = -lamdaAngLimiter ;
+			lamdaCmdOut = -lamdaAngLimiter;
 		}
 	}
-	else
+
+	return lamdaCmdOut;
+
+}
+
+double Servo::limiterRateServo(double lamdaCmdIn)
+{
+	double lamdaCmdOut;
+
+	lamdaCmdOut = lamdaCmdIn;
+
+	if (fabs(lamdaCmdIn - lamdaMeasPrev)> lamdaRateLimiter*dt)
 	{
-		lamdaMeas = lamdaCmd;
+		if (lamdaCmdIn > lamdaMeasPrev)
+		{
+			lamdaCmdOut = lamdaMeasPrev + lamdaRateLimiter * dt;
+		}
+
+		if (lamdaCmdIn < lamdaMeasPrev)
+		{
+			lamdaCmdOut = lamdaMeasPrev - lamdaRateLimiter * dt;
+		}
 
 	}
+
+	return lamdaCmdOut;
 }
 
 void Servo::fullServo(double lamdaCmd)
 {
-	double Out;
+	lamdaMeas = limiterRateServo(lamdaCmd);
+	lamdaMeas = controllerServo(lamdaMeas);
+	lamdaMeas = limiterServo(lamdaMeas);
+	lamdaMeasPrev = lamdaMeas;
 
-	//Out =    a*lamdaCmd+b*inPrev+ c*inPrevPrev +d*outPrev -e*outPrevPrev;
 
-	//outPrevPrev = outPrev;
-	//outPrev = Out;
-	//inPrevPrev = inPrev;
-	///inPrev = lamdaCmd;
-	Out = lamdaCmd;
-	this->limiterServo(Out);
+	lamdaMeas = lamdaCmd;
 
+}
+
+double  Servo::controllerServo(double lamdaIn)
+{
+	
+	double lamdaOut;
+
+	/*F = 2;
+	w = 2 * pi * F;
+	Z = 0.7
+		T_smp = 1 / 10;
+	s = tf('s');
+	FP_cont = exp(-0.2 * s) * 1 / (s ^ 2 / w ^ 2 + (2 * Z / w) * s + 1);
+	FP_dis = c2d(FP_cont, T_smp, 'tustin')
+
+
+		FP_dis =
+
+					0.1736 z ^ 2 + 0.3471 z + 0.1736
+		z ^ (-2) * ------------------------------
+				   z ^ 2 - 0.5322 z + 0.2265
+
+*/
+
+	lamdaOut = a * lamdaIn + b * inPrev + c * inPrevPrev + d * outPrev - e * outPrevPrev;
+
+	outPrevPrev = outPrev;
+	outPrev = lamdaOut;
+	inPrevPrev = inPrev;
+	inPrev = lamdaIn;
+
+	return lamdaOut;
 
 
 }
