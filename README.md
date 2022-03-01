@@ -43,10 +43,13 @@ Car class encapsulates car functionality :
 CarTrack class encapsulates a basic car tracking functionality:
 from  road analysis to generation of the wheel command.
 The carTrack class main function calcWheelAngCmd(Coord *) receives the following inputs:
+
 	1. pathinCarCoord- required coordinate point in the car coordinate system of the lookahead point
 	2. lookAheadRange
 	3. carLength
+	
 and calculates:
+
 	1. TurnRadius - the turn radius required to reach the lookahead point.
 	2. WheelAngCmd - the required wheel angle  command.
 
