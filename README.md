@@ -46,7 +46,7 @@ The carTrack class main function calcWheelAngCmd(Coord *) receives the following
 
 	1. pathinCarCoord- required coordinate point in the car coordinate system of the lookahead point
 	2. lookAheadRange - lookahead range
-	3. carLength - car length parameter according to the kinematic bicycle model.
+	3. carLength - car length parameter according to the kinematic bicycle model is set in the config.h file.
 	
 and calculates:
 
