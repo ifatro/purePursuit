@@ -91,9 +91,9 @@ Car - car pos. in global coordinate system.
 Servo class encapsulates the model of the  closed loop servo-mechanical actuator between the command and
      the actual road wheel angle with the functionality:
 
-1. limiterRateServo - limit wheel rate according to specification.
+1. limiterRateServo - limit wheel rate according to the specification in config.h.
 2. controllerServo  - second order filter with 2[Hz] bandwidth and sampling time of 10[Hz].
-3. limiterServo     - mechanical angle limiter according to specification.
+3. limiterServo     - mechanical angle limiter according to the specification in config.h.
 
 
 Output: 
