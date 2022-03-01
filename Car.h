@@ -6,11 +6,11 @@
 /*--------------------------------------------------------------------------------------------------
 Car class encapsulates car functionality :
    1. car servo - class encapsulate wheel dynamics from command to physical and measure
-   2. car mechanical parameters : car length
-   3. car basic tracking system - class encapsulates road analysis to generate wheel command.
+   2. car basic tracking system - class encapsulates road analysis to generate wheel command
+   3. car mechanical parameters : car length[meter], velocity[m/sec]
    4. car input dynamics -initial position, initial angles (psi), velocity,
    5. car coordinates - usind Coord class
-   6. car dynamic update - class that updates the position, rates  and angular states of the car.
+   6. car dynamic update - updates the position, rates  and angular states of the car.
 
 --------------------------------------------------------------------------------------------------*/
 

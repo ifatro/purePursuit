@@ -4,7 +4,6 @@
 #include <math.h>
 Car::Car(double initPsi)
 {
-
 	psi = initPsi;
 	velocity=5;
 	psi_dot = 0;
@@ -13,9 +12,6 @@ Car::Car(double initPsi)
 	carLength = fordFusionLength;
 	lookAheadRange = 30;
 	carTrack carTrack1(carLength, lookAheadRange);
-	
-
-
 
 }
 
@@ -23,8 +19,11 @@ Car::Car(double initPsi)
 void Car::updateCarDynamics()
 {
 
+	// Basic dynamic model 
+
 	double lamda;
 	lamda=this->carServo.lamdaPhys;
+
 	this->psi_dot = this->velocity * tan(lamda) / this->carLength;
 	this->x_dot = this->velocity * cos(this->psi);
 	this->y_dot = this->velocity * sin(this->psi);
@@ -34,8 +33,5 @@ void Car::updateCarDynamics()
 
 	this->globalCoord.x = this->globalCoord.x + dt* this->x_dot;
 	this->globalCoord.y = this->globalCoord.y + dt * this->y_dot;
-
-
-
 
 }

@@ -55,8 +55,8 @@ int main()
     Car Honda(initPsi_deg * DEG2RAD);
     Path Road(pathType,1000);
     SimulatedTrackingLookAheadPoint SimulatedTrackingLookAheadPoint1(&Honda, &Road);
+    SimulatedTrackingLookAheadPoint1.SetLocalizationErr(false);
 
-;
 
 
 
@@ -65,7 +65,7 @@ int main()
     for (double T = 0; T < simulationTime && pathFound; T=T+dt)
     {
 
-        SimulatedTrackingLookAheadPoint1.SetLocalizationErr(false);
+        
         pathFound = SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord();
         if (pathFound)
         {
