@@ -12,14 +12,14 @@ The simulation runs for  Time=200[sec] with dt=0.1[sec] -  both are set in confi
 * The steps of the simulation are as follows:
 
 a. SimulatedTrackingLookAheadPoint1.SetLocalizationErr(true/false)
-    - set INS noise (default = false)
+    - sets the INS noise (default = false)
     
 b. SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord(*) 
-    - calcultes lookahead point in path.
+    - calculates the lookahead point in path.
     
 c. Honda.basicCarTrack.calcWheelAngCmd(*)  - calculates  wheel angle command.
 
-d. Honda.carServo.fullServo(*) - calculates transfer function from servo command to physical servo.
+d. Honda.carServo.fullServo(*) - calculates the transfer function from the servo command to the physical servo.
 
 e. Honda.updateCarDynamics()   - updates the dynamics of the car.
 
