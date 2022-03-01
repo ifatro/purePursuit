@@ -23,11 +23,11 @@ The simulation runs for  Time=200[sec] with dt=0.1[sec] -  both are set in confi
 
 * The steps of the simulation are as follows:
 
-a. SimulatedTrackingLookAheadPoint1.SetLocalizationErr(true/false)- set INS noise (default is false)
-b. SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord(*) - calcultes lookahead point in path.
-c. Honda.basicCarTrack.calcWheelAngCmd(*) - calculates  wheel angle command
-d. Honda.carServo.fullServo(*) - calculates servo command to physical servo.
-e. Honda.updateCarDynamics() - updates the dynamics of the car.
+
+a. SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord(*) - calcultes lookahead point in path.
+b. Honda.basicCarTrack.calcWheelAngCmd(*) - calculates  wheel angle command
+c. Honda.carServo.fullServo(*) - calculates servo command to physical servo.
+d. Honda.updateCarDynamics() - updates the dynamics of the car.
 
 The simulation prints a few chosen outputs
 ------------------------------------------------------------------------------------------------------------*/
@@ -61,15 +61,15 @@ int main()
     for (double T = 0; T < simulationTime && pathFound; T=T+dt)
     {
 
-        //b
+        //a
         pathFound = SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord();
         if (pathFound)
         {
-            //c
+            //b
             Honda.basicCarTrack.calcWheelAngCmd(SimulatedTrackingLookAheadPoint1.pathinCarCoord);
-            //d
+            //c
             Honda.carServo.fullServo(Honda.basicCarTrack.WheelAngCmd);
-            //e
+            //d
             Honda.updateCarDynamics();
 
 
