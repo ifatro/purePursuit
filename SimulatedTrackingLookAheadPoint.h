@@ -8,7 +8,7 @@
 
 /*--------------------------------------------------------------------------------------------------
 SimulatedTrackingLookAheadPoint class encapsulates the simulation of an etity that generates the 
-lookahead point of the path in the car coordinate system.
+lookahead point of the path in the car coordinate system and is an input to the car track object.
 The entity is a simulation of an INS (Inertial Navigation System) that uses GPS and rate gyros.
 This entity main function checkForLookaheadIntersection(Coord *, Coord *, double *)
 calculates the closest point in the path/road in which the distance from the car to the path is

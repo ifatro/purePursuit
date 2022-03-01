@@ -27,7 +27,7 @@
     <ClCompile Include="Path.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PurePursuitAssignment.cpp">
+    <ClCompile Include="mainPurePursuitAssignment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Rotations.cpp">

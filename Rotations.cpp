@@ -4,33 +4,6 @@
 
 
 
-/*void Rotations::calcRot(double psi)
-{
-
-	C_Global2Car[0][0] = cos(psi);
-	C_Global2Car[0][1] = sin(psi);
-	C_Global2Car[0][2] = 0;
-	C_Global2Car[1][0] = -sin(psi);
-	C_Global2Car[1][1] = cos(psi);
-	C_Global2Car[1][2] = 0;
-	C_Global2Car[2][0] = 0;
-	C_Global2Car[2][1] = 0;
-	C_Global2Car[2][2] = 1;
-
-
-	C_Car2Global[0][0] = cos(psi);
-	C_Car2Global[0][1] = -sin(psi);
-	C_Car2Global[0][2] = 0;
-	C_Car2Global[1][0] = sin(psi);
-	C_Car2Global[1][1] = cos(psi);
-	C_Car2Global[1][2] = 0;
-	C_Car2Global[2][0] = 0;
-	C_Car2Global[2][1] = 0;
-	C_Car2Global[2][2] = 1;
-
-
-}*/
-
 Coord Rotations::calcPathCoordGlobalToCar(double currentPsi, Coord Path, Coord Car)
 {
 

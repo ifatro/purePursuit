@@ -10,23 +10,24 @@ Servo::Servo()
 	// Second degree cntroller parameters
 	
 
-//	#define specLamdaAngLimiter = 45 * PI / 180; // wheel angle mechanical limit is 45 [degress]
-//#define specLlamdaRateLimiter = 20 * PI / 180; // wheel rate limit is 20 deg/sec
 
+	//servo constructor:
 
 
 	lamdaAngLimiter = specLamdaAngLimiter; // wheel angle mechanical limit is 45 [degress]
 	lamdaRateLimiter = specLlamdaRateLimiter; // wheel rate limit is 20 deg/sec
-	lamdaPhys = 0;
-	lamdaPhysPrev = 0;
+	lamdaPhys = 0;        // Initial wheel angle 
+	lamdaPhysPrev = 0;   // Initial wheel angle 
 
 
-	//sevo second degree filter parameters:
+	//sevo second degree filter parameters initialization:
 	inPrev=0;
 	inPrevPrev = 0;
 	outPrev = 0;
 	outPrevPrev = 0;
 
+
+	//Second order filter parameters with sample time of dt=0.1[sec]
 
 	 //              0.1736 z ^ 2 + 0.3471 z + 0.1736
 	//	            ------------------------------
@@ -100,9 +101,8 @@ void Servo::fullServo(double lamdaCmd)
 	lamdaPhys = controllerServo(lamdaPhys);
 	lamdaPhys = limiterServo(lamdaPhys);
 	lamdaPhysPrev = lamdaPhys;
-
-
 	lamdaPhys = lamdaCmd;
+
 
 }
 
@@ -117,21 +117,13 @@ double  Servo::controllerServo(double lamdaIn)
 	
 	double lamdaOut;
 
-	/*F = 2;
-	w = 2 * pi * F;
-	Z = 0.7
-		T_smp = 1 / 10;
-	s = tf('s');
-	FP_cont = exp(-0.2 * s) * 1 / (s ^ 2 / w ^ 2 + (2 * Z / w) * s + 1);
-	FP_dis = c2d(FP_cont, T_smp, 'tustin')
-
-
+	/*
+	* 
 		FP_dis =
 
 					0.1736 z ^ 2 + 0.3471 z + 0.1736
 		             ------------------------------
 				   z ^ 2 - 0.5322 z + 0.2265
-
 */
 
 	lamdaOut = a * lamdaIn + b * inPrev + c * inPrevPrev + d * outPrev - e * outPrevPrev;

@@ -1,7 +1,7 @@
 #include "Coord.h"
 
 
-// Coord is a class representing xyz cartesian coordinate system
+//Coord class encapsulates x-y-z right hand cartesian coordinate system
 
 Coord::Coord()
 {

@@ -48,9 +48,6 @@ bool SimulatedTrackingLookAheadPoint::CalcLookAheadCoord()
 		{
 			double randnPsi = honda->psi+rand();
 			Coord randniPath;
-			
-	
-
 
 			std::default_random_engine generator;
 			std::normal_distribution<double> distPos(0, gpsStdPos); // Adding white noise to position with standard deviation of 0.1[meter]
@@ -95,7 +92,7 @@ bool SimulatedTrackingLookAheadPoint::checkForLookaheadIntersection(Coord pathin
 	aRange = sqrt(pathinCar.x * pathinCar.x + pathinCar.y * pathinCar.y + pathinCar.z * pathinCar.z);
 	bRange = sqrt(pathinCarNext.x * pathinCarNext.x + pathinCarNext.y * pathinCarNext.y + pathinCarNext.z * pathinCarNext.z);
 	
-	if (aRange<lookAheadRange && bRange>lookAheadRange)
+	if (aRange<=lookAheadRange && bRange>lookAheadRange)
 	{
 
 		return true;
