@@ -11,17 +11,16 @@ The simulation runs for  Time=200[sec] with dt=0.1[sec] -  both are set in confi
 
 * The steps of the simulation are as follows:
 
-a. SimulatedTrackingLookAheadPoint1.SetLocalizationErr(true/false)
-    - sets the INS noise (default = false)
+
     
-b. SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord(*) 
+a. SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord(*) 
     - calculates the lookahead point in path.
     
-c. Honda.basicCarTrack.calcWheelAngCmd(*)  - calculates  wheel angle command.
+b. Honda.basicCarTrack.calcWheelAngCmd(*)  - calculates  wheel angle command.
 
-d. Honda.carServo.fullServo(*) - calculates the transfer function from the servo command to the physical servo.
+c. Honda.carServo.fullServo(*) - calculates the transfer function from the servo command to the physical servo.
 
-e. Honda.updateCarDynamics()   - updates the dynamics of the car.
+d. Honda.updateCarDynamics()   - updates the dynamics of the car.
 
 The simulation prints a few chosen outputs.
 
@@ -135,7 +134,7 @@ The output of the function:
 There is an option to add localizations error in the INS/GYRO according to the config file specification
 using the flag indicating localization noise addition:
 
-applyLocalizationErr  true/false
+applyLocalizationErr  true/false in config.h
 
 ---------------------------------------------------------------------------
 
