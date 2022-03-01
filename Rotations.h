@@ -3,7 +3,6 @@
 #include "Coord.h"
 
 
-
 /*--------------------------------------------------------------------------------------------------
 Rotation class encapsulates the rotation from the path global coordinate system to the car coordinate system 
                        and  the rotation from  the car coordinate systemthe to the path global coordinate system 
