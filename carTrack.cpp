@@ -19,12 +19,12 @@ carTrack::carTrack(double carLength1, double lookAheadRange1)
 	WheelAngCmd = 0;
 }
 
-void carTrack::calcWheelAngCmd(Coord PathInCarCoord)
+void carTrack::calcWheelAngCmd(Coord pathinCarCoord)
 {
 
 	double alfa;
 
-	alfa = atan2(PathInCarCoord.y, PathInCarCoord.x);
+	alfa = atan2(pathinCarCoord.y, pathinCarCoord.x);
 	TurnRadius= fabs(lookAheadRange / (2 * sin(alfa)));
 	WheelAngCmd = atan(2 * carLength * sin(alfa) / lookAheadRange);
 

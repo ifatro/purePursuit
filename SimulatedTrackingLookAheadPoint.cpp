@@ -1,3 +1,4 @@
+#include <random>
 #include "config.h"
 #include "SimulatedTrackingLookAheadPoint.h"
 #include "Coord.h"
@@ -5,11 +6,20 @@
 #include "Path.h"
 #include "Rotations.h"
 
+
+
 SimulatedTrackingLookAheadPoint::SimulatedTrackingLookAheadPoint(Car* honda1, Path* road1)
 {
 	road = road1;
 	honda = honda1;
 	lastPathIndex = 1;
+	applyLocalizationErr=true;
+}
+
+void SimulatedTrackingLookAheadPoint::SetLocalizationErr(bool applyLocalizationErr1)
+{
+
+	applyLocalizationErr = applyLocalizationErr1;
 }
 
 
@@ -24,26 +34,50 @@ bool SimulatedTrackingLookAheadPoint::CalcLookAheadCoord()
 
 	unsigned int i;
 	bool found = false;
-//	Coord PathinCarCoord;
+//	Coord pathinCarCoord;
 
 
 
 	for(i=lastPathIndex; i< road->pathLength -1 && !found; i++)
 	{
 
-		Coord PathinCar;
-		Coord PathinCarNext;
+		Coord pathinCar;
+		Coord pathinCarNext;
+
+		if (applyLocalizationErr)
+		{
+			double randnPsi = honda->psi+rand();
+			Coord randniPath;
+			
+	
 
 
-		PathinCar=Rot.calcPathCoordGlobalToCar(honda->psi, road->iPath[i]  ,honda->globalCoord );
-		PathinCarNext=Rot.calcPathCoordGlobalToCar(honda->psi, road->iPath[i + 1], honda->globalCoord);
+			std::default_random_engine generator;
+			std::normal_distribution<double> distPos(0, 0.1); // Adding white noise to position with standard deviation of 0.1[meter]
+			std::normal_distribution<double> distAng(0, 0.01);// Adding white noise to angle with standard deviation of 0.01[rad]
+			
+
+			randniPath.x= honda->globalCoord.x + distPos(generator);
+			randniPath.y = honda->globalCoord.y + distPos(generator);
+			randniPath.z = honda->globalCoord.z + distPos(generator);
+
+			pathinCar = Rot.calcPathCoordGlobalToCar(honda->psi, road->iPath[i], randniPath);
+			pathinCarNext = Rot.calcPathCoordGlobalToCar(honda->psi, road->iPath[i + 1], honda->globalCoord);
+
+		}
+		else
+		{
+			pathinCar = Rot.calcPathCoordGlobalToCar(honda->psi, road->iPath[i], honda->globalCoord);
+			pathinCarNext = Rot.calcPathCoordGlobalToCar(honda->psi, road->iPath[i + 1], honda->globalCoord);
+		}
+
 
 	
-		if (checkForLookaheadIntersection(PathinCar, PathinCarNext, honda->lookAheadRange))
+		if (checkForLookaheadIntersection(pathinCar, pathinCarNext, honda->lookAheadRange))
 		{
 			found = true;
 			lastPathIndex = i;
-			PathInCarCoord = PathinCarNext;
+			pathinCarCoord = pathinCarNext;
 		}
 	}
 
@@ -52,14 +86,14 @@ bool SimulatedTrackingLookAheadPoint::CalcLookAheadCoord()
 
 }
 
-bool SimulatedTrackingLookAheadPoint::checkForLookaheadIntersection(Coord a, Coord b, double lookAheadRange)
+bool SimulatedTrackingLookAheadPoint::checkForLookaheadIntersection(Coord pathinCar, Coord pathinCarNext, double lookAheadRange)
 { 
 	double aRange;
 	double bRange;
 
 
-	aRange = sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
-	bRange = sqrt(b.x * b.x + b.y * b.y + b.z * b.z);
+	aRange = sqrt(pathinCar.x * pathinCar.x + pathinCar.y * pathinCar.y + pathinCar.z * pathinCar.z);
+	bRange = sqrt(pathinCarNext.x * pathinCarNext.x + pathinCarNext.y * pathinCarNext.y + pathinCarNext.z * pathinCarNext.z);
 	
 	if (aRange<lookAheadRange && bRange>lookAheadRange)
 	{

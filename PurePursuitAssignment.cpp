@@ -1,6 +1,6 @@
 // PurePursuitAssignment.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
+#include <stdlib.h>
 #include <iostream>
 #include <math.h>
 #include "config.h"
@@ -34,18 +34,21 @@ int main()
     Path Road(pathType,1000);
     SimulatedTrackingLookAheadPoint SimulatedTrackingLookAheadPoint1(&Honda, &Road);
 
+    double simulationTime = 200;
+
+
 
     double T;
 
-    for (T = 0; T < 200 && pathFound; T=T+dt)
+    for (T = 0; T < simulationTime && pathFound; T=T+dt)
     {
 
 
-
+        SimulatedTrackingLookAheadPoint1.SetLocalizationErr(true);
         pathFound = SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord();
         if (pathFound)
         {
-            Honda.basicCarTrack.calcWheelAngCmd(SimulatedTrackingLookAheadPoint1.PathInCarCoord);
+            Honda.basicCarTrack.calcWheelAngCmd(SimulatedTrackingLookAheadPoint1.pathinCarCoord);
             Honda.carServo.fullServo(Honda.basicCarTrack.WheelAngCmd);
             Honda.updateCarDynamics();
 
@@ -75,7 +78,7 @@ int main()
             std::cout << "WheelAngCmd: ";
             std::cout << Honda.basicCarTrack.WheelAngCmd * 180 / PI;
             std::cout << "\n";
-            //Road.printPath();
+
         }
     }
 

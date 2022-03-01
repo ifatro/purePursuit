@@ -1,4 +1,4 @@
-#include <math.h>
+﻿#include <math.h>
 #include "config.h"
 #include "Servo.h"
 
@@ -12,8 +12,8 @@ Servo::Servo()
 
 	lamdaAngLimiter = 45*PI/180; // wheel angle mechanical limit is 45 [degress]
 	lamdaRateLimiter = 20*PI/180; // wheel rate limit is 20 deg/sec
-	lamdaMeas = 0;
-	lamdaMeasPrev = 0;
+	lamdaPhys = 0;
+	lamdaPhysPrev = 0;
 
 
 	//sevo second degree filter parameters:
@@ -24,7 +24,7 @@ Servo::Servo()
 
 
 	 //              0.1736 z ^ 2 + 0.3471 z + 0.1736
-	//	z ^ (-2) * ------------------------------
+	//	            ------------------------------
 	//	           z ^ 2 - 0.5322 z + 0.2265
 
 
@@ -38,34 +38,7 @@ Servo::Servo()
 
 }
 
-/*Servo::Servo(double lamdaAngLimiter1, double lamdaRateLimiter1)
-{
-	lamdaAngLimiter = lamdaAngLimiter1;
-	lamdaRateLimiter = lamdaRateLimiter1;
-	lamdaMeas = 0;
-	lamdaMeasPrev = 0;
 
-
-	//sevo second degree filter parameters:
-	inPrev = 0;
-	inPrevPrev = 0;
-	outPrev = 0;
-	outPrevPrev = 0;
-
-
-	//              0.1736 z ^ 2 + 0.3471 z + 0.1736
-   //	z ^ (-2) * ------------------------------
-   //	           z ^ 2 - 0.5322 z + 0.2265
-
-	a = 0.1736;
-	b = 0.3471;
-	c = 0.1736;
-	d = 0.5322;
-	e = 0.2265;
-
-
-
-}*/
 
 double Servo::limiterServo(double lamdaCmdIn)
 {
@@ -79,12 +52,10 @@ double Servo::limiterServo(double lamdaCmdIn)
 	{
 		if (lamdaCmdIn > 0)
 		{
-
 			lamdaCmdOut = lamdaAngLimiter;
 		}
 		else
 		{
-
 			lamdaCmdOut = -lamdaAngLimiter;
 		}
 	}
@@ -99,16 +70,16 @@ double Servo::limiterRateServo(double lamdaCmdIn)
 
 	lamdaCmdOut = lamdaCmdIn;
 
-	if (fabs(lamdaCmdIn - lamdaMeasPrev)> lamdaRateLimiter*dt)
+	if (fabs(lamdaCmdIn - lamdaPhysPrev)> lamdaRateLimiter*dt)
 	{
-		if (lamdaCmdIn > lamdaMeasPrev)
+		if (lamdaCmdIn > lamdaPhysPrev)
 		{
-			lamdaCmdOut = lamdaMeasPrev + lamdaRateLimiter * dt;
+			lamdaCmdOut = lamdaPhysPrev + lamdaRateLimiter * dt;
 		}
 
-		if (lamdaCmdIn < lamdaMeasPrev)
+		if (lamdaCmdIn < lamdaPhysPrev)
 		{
-			lamdaCmdOut = lamdaMeasPrev - lamdaRateLimiter * dt;
+			lamdaCmdOut = lamdaPhysPrev - lamdaRateLimiter * dt;
 		}
 
 	}
@@ -118,18 +89,24 @@ double Servo::limiterRateServo(double lamdaCmdIn)
 
 void Servo::fullServo(double lamdaCmd)
 {
-	lamdaMeas = limiterRateServo(lamdaCmd);
-	lamdaMeas = controllerServo(lamdaMeas);
-	lamdaMeas = limiterServo(lamdaMeas);
-	lamdaMeasPrev = lamdaMeas;
+	lamdaPhys = limiterRateServo(lamdaCmd);
+	lamdaPhys = controllerServo(lamdaPhys);
+	lamdaPhys = limiterServo(lamdaPhys);
+	lamdaPhysPrev = lamdaPhys;
 
 
-	lamdaMeas = lamdaCmd;
+	lamdaPhys = lamdaCmd;
 
 }
 
 double  Servo::controllerServo(double lamdaIn)
 {
+
+	/*This function is used to model a closed loop servo-mechanical actuator between the command and
+     the actual road wheel angle as a second order filter with a bandwidth of 2[Hz].
+	The function calculates a second order discrete filter output with a sampling time of 10[Hz] and  a damping factor, ζ (zeta)=0.7.
+	The filter input is the lamda wheel command.
+	*/
 	
 	double lamdaOut;
 
@@ -145,7 +122,7 @@ double  Servo::controllerServo(double lamdaIn)
 		FP_dis =
 
 					0.1736 z ^ 2 + 0.3471 z + 0.1736
-		z ^ (-2) * ------------------------------
+		             ------------------------------
 				   z ^ 2 - 0.5322 z + 0.2265
 
 */

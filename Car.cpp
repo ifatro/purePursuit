@@ -19,12 +19,12 @@ Car::Car(double initPsi)
 
 }
 
-/*void Car::calcWheelAngCmd(Coord PathInCarCoord)
+/*void Car::calcWheelAngCmd(Coord pathinCarCoord)
 {
 
 	double alfa;
 
-	alfa = atan2(PathInCarCoord.y, PathInCarCoord.x);
+	alfa = atan2(pathinCarCoord.y, pathinCarCoord.x);
 	this->TurnRadius = fabs(this->lookAheadRange/ (2 * sin(alfa)));
 	this->WheelAngCmd = atan(2 * this->carLength * sin(alfa) / this->lookAheadRange);
 
@@ -54,7 +54,7 @@ void Car::updateCarDynamics()
 {
 
 	double lamda;
-	lamda=this->carServo.lamdaMeas;
+	lamda=this->carServo.lamdaPhys;
 	this->psi_dot = this->velocity * tan(lamda) / this->carLength;
 	this->x_dot = this->velocity * cos(this->psi);
 	this->y_dot = this->velocity * sin(this->psi);

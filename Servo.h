@@ -2,6 +2,12 @@
 class Servo
 {
 
+
+	/*--------------------------------------------------------------------------------------------------
+Servo class encapsulates  :
+
+--------------------------------------------------------------------------------------------------*/
+
 public:
 
 
@@ -9,7 +15,7 @@ public:
 	//Servo(double lamdaAngLimiter1, double lamdaRateLimiter1);
 
 
-	double lamdaMeas;
+	double lamdaPhys;
 	double limiterRateServo(double lamdaCmdIn);
 	double limiterServo(double lamdaCmdIn);
 	void fullServo(double lamdaCmd);
@@ -19,7 +25,7 @@ protected:
 
 	double lamdaAngLimiter;
 	double lamdaRateLimiter;
-	double lamdaMeasPrev;
+	double lamdaPhysPrev;
 
 	double inPrev;
 	double inPrevPrev;
