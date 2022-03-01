@@ -50,13 +50,16 @@ CarTrack class encapsulates a basic car tracking functionality:
 from  road analysis to generation of the wheel command.
 The carTrack class main function calcWheelAngCmd(Coord *) receives the following inputs:
 
-	1. pathinCarCoord- required coordinate point in the car coordinate system of the lookahead point
-	2. lookAheadRange - lookahead range
+	1. pathinCarCoord- required coordinate point in the car coordinate system of the lookahead point.
+	
+	2. lookAheadRange - lookahead range.
+	
 	3. carLength - car length parameter according to the kinematic bicycle model is set in the config.h file.
 	
 and calculates:
 
 	1. TurnRadius - the turn radius required to reach the lookahead point.
+	
 	2. WheelAngCmd - the required wheel angle  command.
 
   
