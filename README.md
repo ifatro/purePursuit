@@ -45,8 +45,8 @@ from  road analysis to generation of the wheel command.
 The carTrack class main function calcWheelAngCmd(Coord *) receives the following inputs:
 
 	1. pathinCarCoord- required coordinate point in the car coordinate system of the lookahead point
-	2. lookAheadRange
-	3. carLength
+	2. lookAheadRange - lookahead range
+	3. carLength - car length parameter according to the kinematic bicycle model.
 	
 and calculates:
 
