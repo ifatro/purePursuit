@@ -77,8 +77,11 @@ functions:
 2.calcCarToPathCoordGlobal - rotation from car system to path global system.
 
 Inputs:
-currentPsi - current car psi angle in global coordinate system
+
+currentPsi - current car psi angle in global coordinate system.
+
 Path - path pos. car/global coordinate system.
+
 Car - car pos. in global coordinate system.
 
 ----------------------------------------------------------------------------------
