@@ -60,6 +60,7 @@ Path class encapsulates the road cartesian coordinates in a global system :
 There are two path typs: 
 
 1- stright line
+
 2- circle
 
 The  length of the path is defined in the main() function.
@@ -92,7 +93,9 @@ Servo class encapsulates the model of the  closed loop servo-mechanical actuator
      the actual road wheel angle with the functionality:
 
 1. limiterRateServo - limit wheel rate according to the specification in config.h.
+
 2. controllerServo  - second order filter with 2[Hz] bandwidth and sampling time of 10[Hz].
+
 3. limiterServo     - mechanical angle limiter according to the specification in config.h.
 
 
@@ -109,14 +112,20 @@ This entity main function checkForLookaheadIntersection(Coord *, Coord *, double
 calculates the closest point in the path/road in which the distance from the car to the path is
 larger than the lookAheadRange paramater.
 The inputs of the function:
-1. pathinCar - Path point in car coordinate system
-2. pathinCarNext - Next path point in car coordinate system
-3. lookAheadRange - The  range to which a path point in requested. the lookahead range is a parameter of the car tracking system.
-The output of the function:
-1. pathinCarCoord - the requested path that fullfils the lookahead range parameter request.
 
-There is an option to add localizations error in the INS according to the config file specification
+1. pathinCar - Path point in car coordinate system
+
+2. pathinCarNext - Next path point in car coordinate system
+ 
+3. lookAheadRange - The  range to which a path point is requested. the lookahead range is a parameter of the car track system.
+
+The output of the function:
+
+1. pathinCarCoord - the requested path point that fullfils the lookahead range parameter request.
+
+There is an option to add localizations error in the INS/GYRO according to the config file specification
 using the flag indicating localization noise addition:
+
 applyLocalizationErr  true/false
 
 ---------------------------------------------------------------------------
