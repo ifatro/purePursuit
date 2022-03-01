@@ -2,9 +2,9 @@
 
 mainPurePursuitAssignment is the main function which runs the pursuit tracking algorithm.
 
-* The inputs to the simulation are recieved by the user in the console application:
+* Two inputs to the simulation are received from the user in the console application:
 
-- initial car psi angle [deg]
+- The initial car psi angle [deg]
 - The type of the road path:straight(1)/circle(2)
 
 The simulation runs for  Time=200[sec] with dt=0.1[sec] -  both are set in config.h.
