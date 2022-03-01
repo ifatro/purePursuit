@@ -14,15 +14,14 @@
 /*------------------------------------------------------------------------------------------------------------
 mainPurePursuitAssignment is the main function which runs the pursuit tracking algorithm.
 
-* The inputs to the simulation are given by the user in the console:
+* The inputs to the simulation are recieved by the user in the console application:
 
 - initial car psi angle [deg]
 - The type of the road path:straight(1)/circle(2)
 
+The simulation runs for  Time=200[sec] with dt=0.1[sec] -  both are set in config.h.
 
-The simulation runs for simulation Time=200[sec] with dt=0.1[sec]  both set in config.h
-
-* THe steps of the simulation are as follows:
+* The steps of the simulation are as follows:
 
 a. SimulatedTrackingLookAheadPoint1.SetLocalizationErr(true/false)- set INS noise (default is false)
 b. SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord(*) - calcultes lookahead point in path.
@@ -30,7 +29,7 @@ c. Honda.basicCarTrack.calcWheelAngCmd(*) - calculates  wheel angle command
 d. Honda.carServo.fullServo(*) - calculates servo command to physical servo.
 e. Honda.updateCarDynamics() - updates the dynamics of the car.
 
-The simulation prints the followong outputs
+The simulation prints a few chosen outputs
 ------------------------------------------------------------------------------------------------------------*/
 
 
@@ -55,6 +54,7 @@ int main()
     Car Honda(initPsi_deg * DEG2RAD);
     Path Road(pathType,1000);
     SimulatedTrackingLookAheadPoint SimulatedTrackingLookAheadPoint1(&Honda, &Road);
+    //a
     SimulatedTrackingLookAheadPoint1.SetLocalizationErr(false);
 
 
@@ -65,12 +65,15 @@ int main()
     for (double T = 0; T < simulationTime && pathFound; T=T+dt)
     {
 
-        
+        //b
         pathFound = SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord();
         if (pathFound)
         {
+            //c
             Honda.basicCarTrack.calcWheelAngCmd(SimulatedTrackingLookAheadPoint1.pathinCarCoord);
+            //d
             Honda.carServo.fullServo(Honda.basicCarTrack.WheelAngCmd);
+            //e
             Honda.updateCarDynamics();
 
 

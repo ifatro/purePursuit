@@ -2,8 +2,9 @@
 #include "Coord.h"
 class Path
 {
-
-	/*--------------------------------------------------------------------------------------------------
+	
+	
+/*--------------------------------------------------------------------------------------------------
 Path class encapsulates the road cartesian coordinates in a global system :
 There are two path typs: 1- stright line; 2- circle.
 The  length of the path in is defined in the main() function.
