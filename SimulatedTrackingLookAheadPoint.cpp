@@ -13,7 +13,7 @@ SimulatedTrackingLookAheadPoint::SimulatedTrackingLookAheadPoint(Car* honda1, Pa
 	road = road1;
 	honda = honda1;
 	lastPathIndex = 1;
-	applyLocalizationErr=false;
+	applyLocalizationErr= isLocalizationErr;
 }
 
 void SimulatedTrackingLookAheadPoint::SetLocalizationErr(bool applyLocalizationErr1)

@@ -10,5 +10,5 @@
 // SERVO actuator specification
 #define specLamdaAngLimiter  45*DEG2RAD  // wheel angle mechanical limit is 45[degress]
 #define specLlamdaRateLimiter  20*DEG2RAD  // wheel rate limit is 20[deg/sec]
-
+#define isLocalizationErr false
 

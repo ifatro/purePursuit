@@ -54,10 +54,6 @@ int main()
     Car Honda(initPsi_deg * DEG2RAD);
     Path Road(pathType,1000);
     SimulatedTrackingLookAheadPoint SimulatedTrackingLookAheadPoint1(&Honda, &Road);
-    //a
-    SimulatedTrackingLookAheadPoint1.SetLocalizationErr(false);
-
-
 
 
 
