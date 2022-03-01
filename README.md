@@ -12,14 +12,14 @@ The simulation runs for  Time=200[sec] with dt=0.1[sec] -  both are set in confi
 * The steps of the simulation are as follows:
 
 a. SimulatedTrackingLookAheadPoint1.SetLocalizationErr(true/false)
-    - set INS noise (default is false)
+    - set INS noise (default = false)
     
 b. SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord(*) 
     - calcultes lookahead point in path.
     
-c. Honda.basicCarTrack.calcWheelAngCmd(*)  - calculates  wheel angle command
+c. Honda.basicCarTrack.calcWheelAngCmd(*)  - calculates  wheel angle command.
 
-d. Honda.carServo.fullServo(*) - calculates servo command to physical servo.
+d. Honda.carServo.fullServo(*) - calculates transfer function from servo command to physical servo.
 
 e. Honda.updateCarDynamics()   - updates the dynamics of the car.
 
@@ -29,11 +29,11 @@ The simulation prints a few chosen outputs.
 -----------------------------------------------------------------------------------
 
 Car class encapsulates car functionality :
-1. car servo - class encapsulate wheel dynamics from command to physical and measure
-2. car basic tracking system - class encapsulates road analysis to generate wheel command
+1. car servo - class encapsulate wheel dynamics from command to physical wheel.
+2. car basic tracking system - class encapsulates road analysis to generate wheel command.
 3. car mechanical parameters : car length[meter], velocity[m/sec]
 4. car input dynamics -initial position, initial angles (psi), velocity,
-5. car coordinates - usind Coord class
+5. car coordinates - usind Coord class.
 6. car dynamic update - updates the position, rates  and angular states of the car.
 
 ----------------------------------------------------------------------------------
@@ -47,8 +47,8 @@ The carTrack class main function calcWheelAngCmd(Coord *) receives the following
 	2. lookAheadRange
 	3. carLength
 and calculates:
-	1. TurnRadius - the turn radius required to reach the look ahead point.
-	2. WheelAngCmd - the wheel angle required command.
+	1. TurnRadius - the turn radius required to reach the lookahead point.
+	2. WheelAngCmd - the required wheel angle  command.
 
   
 ------------------------------------------------------------------------------------
@@ -82,8 +82,8 @@ Servo class encapsulates the model of the  closed loop servo-mechanical actuator
      the actual road wheel angle with the functionality:
 
 1. limiterRateServo - limit wheel rate according to specification.
-2. controllerServo - second order filter with 2[Hz] bandwidth.
-3. limiterServo - mechanical angle limit.
+2. controllerServo  - second order filter with 2[Hz] bandwidth and sampling time of 10[Hz].
+3. limiterServo     - mechanical angle limiter according to specification.
 
 
 Output: 
@@ -110,3 +110,5 @@ using the flag indicating localization noise addition:
 applyLocalizationErr  true/false
 
 ---------------------------------------------------------------------------
+
+config.h - configuration file.
