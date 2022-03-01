@@ -12,7 +12,7 @@ public:
 
 
 	Servo();
-	//Servo(double lamdaAngLimiter1, double lamdaRateLimiter1);
+
 
 
 	double lamdaPhys;

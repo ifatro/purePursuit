@@ -13,7 +13,7 @@ SimulatedTrackingLookAheadPoint::SimulatedTrackingLookAheadPoint(Car* honda1, Pa
 	road = road1;
 	honda = honda1;
 	lastPathIndex = 1;
-	applyLocalizationErr=true;
+	applyLocalizationErr=false;
 }
 
 void SimulatedTrackingLookAheadPoint::SetLocalizationErr(bool applyLocalizationErr1)
@@ -53,8 +53,8 @@ bool SimulatedTrackingLookAheadPoint::CalcLookAheadCoord()
 
 
 			std::default_random_engine generator;
-			std::normal_distribution<double> distPos(0, 0.1); // Adding white noise to position with standard deviation of 0.1[meter]
-			std::normal_distribution<double> distAng(0, 0.01);// Adding white noise to angle with standard deviation of 0.01[rad]
+			std::normal_distribution<double> distPos(0, gpsStdPos); // Adding white noise to position with standard deviation of 0.1[meter]
+			std::normal_distribution<double> distAng(0, gpsStdAng);// Adding white noise to angle with standard deviation of 0.01[rad]
 			
 
 			randniPath.x= honda->globalCoord.x + distPos(generator);

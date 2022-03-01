@@ -30,11 +30,11 @@ int main()
     std::cout << "Enter Path Type (1 for line, 2 for circle):\n";
     std::cin >> pathType;
 
-    Car Honda(initPsi_deg * PI / 180);
+    Car Honda(initPsi_deg * DEG2RAD);
     Path Road(pathType,1000);
     SimulatedTrackingLookAheadPoint SimulatedTrackingLookAheadPoint1(&Honda, &Road);
 
-    double simulationTime = 200;
+;
 
 
 
@@ -44,7 +44,7 @@ int main()
     {
 
 
-        SimulatedTrackingLookAheadPoint1.SetLocalizationErr(true);
+        SimulatedTrackingLookAheadPoint1.SetLocalizationErr(false);
         pathFound = SimulatedTrackingLookAheadPoint1.CalcLookAheadCoord();
         if (pathFound)
         {
@@ -70,13 +70,13 @@ int main()
             std::cout << diff;
             std::cout << "\n";
             std::cout << "car psi: ";
-            std::cout << Honda.psi * 180 / PI;
+            std::cout << Honda.psi * RAD2DEG;
             std::cout << "\n";
             std::cout << "index: ";
             std::cout << index;
             std::cout << "\n";
             std::cout << "WheelAngCmd: ";
-            std::cout << Honda.basicCarTrack.WheelAngCmd * 180 / PI;
+            std::cout << Honda.basicCarTrack.WheelAngCmd * RAD2DEG;
             std::cout << "\n";
 
         }

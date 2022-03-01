@@ -10,8 +10,13 @@ Servo::Servo()
 	// Second degree cntroller parameters
 	
 
-	lamdaAngLimiter = 45*PI/180; // wheel angle mechanical limit is 45 [degress]
-	lamdaRateLimiter = 20*PI/180; // wheel rate limit is 20 deg/sec
+//	#define specLamdaAngLimiter = 45 * PI / 180; // wheel angle mechanical limit is 45 [degress]
+//#define specLlamdaRateLimiter = 20 * PI / 180; // wheel rate limit is 20 deg/sec
+
+
+
+	lamdaAngLimiter = specLamdaAngLimiter; // wheel angle mechanical limit is 45 [degress]
+	lamdaRateLimiter = specLlamdaRateLimiter; // wheel rate limit is 20 deg/sec
 	lamdaPhys = 0;
 	lamdaPhysPrev = 0;
 
@@ -42,6 +47,7 @@ Servo::Servo()
 
 double Servo::limiterServo(double lamdaCmdIn)
 {
+	/*This function is used to model a mechanical limiter*/
 
 
 	double lamdaCmdOut;
@@ -66,6 +72,7 @@ double Servo::limiterServo(double lamdaCmdIn)
 
 double Servo::limiterRateServo(double lamdaCmdIn)
 {
+	/*This function is used to model a rate limiter*/
 	double lamdaCmdOut;
 
 	lamdaCmdOut = lamdaCmdIn;
