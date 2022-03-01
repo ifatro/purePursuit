@@ -17,45 +17,46 @@ c. Honda.basicCarTrack.calcWheelAngCmd(*) - calculates  wheel angle command
 d. Honda.carServo.fullServo(*) - calculates servo command to physical servo.
 e. Honda.updateCarDynamics() - updates the dynamics of the car.
 
-The simulation prints a few chosen outputs
+The simulation prints a few chosen outputs.
 
 
 /*--------------------------------------------------------------------------------------------------
 Car class encapsulates car functionality :
-   1. car servo - class encapsulate wheel dynamics from command to physical and measure
-   2. car basic tracking system - class encapsulates road analysis to generate wheel command
-   3. car mechanical parameters : car length[meter], velocity[m/sec]
-   4. car input dynamics -initial position, initial angles (psi), velocity,
-   5. car coordinates - usind Coord class
-   6. car dynamic update - updates the position, rates  and angular states of the car.
+1. car servo - class encapsulate wheel dynamics from command to physical and measure
+2. car basic tracking system - class encapsulates road analysis to generate wheel command
+3. car mechanical parameters : car length[meter], velocity[m/sec]
+4. car input dynamics -initial position, initial angles (psi), velocity,
+5. car coordinates - usind Coord class
+6. car dynamic update - updates the position, rates  and angular states of the car.
 
 --------------------------------------------------------------------------------------------------*/
 
-	/*--------------------------------------------------------------------------------------------------
-	CarTrack class encapsulates a basic car tracking functionality:
-    from  road analysis to generation of the wheel command.
-	The carTrack class main function calcWheelAngCmd(Coord *) receives the following inputs:
-	1. pathinCarCoord- required coordinate point in the car coordinate system of the look ahead point
+/*--------------------------------------------------------------------------------------------------
+CarTrack class encapsulates a basic car tracking functionality:
+from  road analysis to generation of the wheel command.
+The carTrack class main function calcWheelAngCmd(Coord *) receives the following inputs:
+	1. pathinCarCoord- required coordinate point in the car coordinate system of the lookahead point
 	2. lookAheadRange
 	3. carLength
-	and calculates:
-	1. TurnRadius - the turn radius required to reach the look ahead point
-	2. WheelAngCmd - rhe wheel angle command
-	--------------------------------------------------------------------------------------------------*/
+and calculates:
+	1. TurnRadius - the turn radius required to reach the look ahead point.
+	2. WheelAngCmd - the wheel angle required command.
+--------------------------------------------------------------------------------------------------*/
   
-  /*--------------------------------------------------------------------------------------------------
+ /*--------------------------------------------------------------------------------------------------
 Path class encapsulates the road cartesian coordinates in a global system :
 There are two path typs: 1- stright line; 2- circle.
-The  length of the path in is defined in the main() function.
+The  length of the path is defined in the main() function.
 --------------------------------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------------------------------
 Rotation class encapsulates the rotation from the path global coordinate system to the car coordinate system 
-                       and  the rotation from  the car coordinate systemthe to the path global coordinate system 
-using functions:
+and  the rotation from  the car coordinate systemthe to the path global coordinate system 
 
-1.calcPathCoordGlobalToCar - rotation from path global system to car system
-2.calcCarToPathCoordGlobal - rotation from car system to path global system
+functions:
+
+1.calcPathCoordGlobalToCar - rotation from path global system to car system.
+2.calcCarToPathCoordGlobal - rotation from car system to path global system.
 
 Inputs:
 currentPsi - current car psi angle in global coordinate system
@@ -63,16 +64,16 @@ Path - path pos. car/global coordinate system.
 Car - car pos. in global coordinate system.
 --------------------------------------------------------------------------------------------------*/
 
-	/*--------------------------------------------------------------------------------------------------
+/*--------------------------------------------------------------------------------------------------
 Servo class encapsulates the model of the  closed loop servo-mechanical actuator between the command and
      the actual road wheel angle with the functionality:
 
-	 1. limiterRateServo - limit wheel rate according to specification.
-	 2. controllerServo - second order filter with 2[Hz] bandwidth.
-	 3. limiterServo - mechanical angle limit.
+1. limiterRateServo - limit wheel rate according to specification.
+2. controllerServo - second order filter with 2[Hz] bandwidth.
+3. limiterServo - mechanical angle limit.
 
 
-	 Output: 
+Output: 
 	 lamdaPhys - physical lamda wheel angle.
 --------------------------------------------------------------------------------------------------*/
 
