@@ -39,9 +39,9 @@ int main()
     double initPsi_deg;
     unsigned int pathType;
 
- 
-    
-    bool pathFound=true;
+
+
+    bool pathFound = true;
 
     std::cout << "Enter Initial car psi [deg]:\n";
     std::cin >> initPsi_deg;
@@ -52,13 +52,13 @@ int main()
     // Objects initialization
 
     Car Honda(initPsi_deg * DEG2RAD);
-    Path Road(pathType,1000);
+    Path Road(pathType, 1000);
     SimulatedTrackingLookAheadPoint SimulatedTrackingLookAheadPoint1(&Honda, &Road);
 
 
 
 
-    for (double T = 0; T < simulationTime && pathFound; T=T+dt)
+    for (double T = 0; T < simulationTime && pathFound; T = T + dt)
     {
 
         //a
@@ -102,6 +102,8 @@ int main()
         }
     }
 }
+
+
 
 
 

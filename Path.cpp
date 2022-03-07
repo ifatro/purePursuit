@@ -9,6 +9,11 @@ Path::Path(unsigned int Type1, unsigned int pathLength1)
 	generatePath();
 }
 
+Path::~Path()
+{
+	delete[] iPath;
+}
+
 void Path::printPath(void)
 {
 	unsigned int i;

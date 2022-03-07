@@ -30,7 +30,7 @@ bool SimulatedTrackingLookAheadPoint::CalcLookAheadCoord()
 {
 
 	Rotations Rot;
-	Coord currPos = honda->globalCoord;
+	//Coord currPos = honda->globalCoord;
 
 	unsigned int i;
 	bool found = false;
@@ -57,9 +57,11 @@ bool SimulatedTrackingLookAheadPoint::CalcLookAheadCoord()
 			randniPath.x= honda->globalCoord.x + distPos(generator);
 			randniPath.y = honda->globalCoord.y + distPos(generator);
 			randniPath.z = honda->globalCoord.z + distPos(generator);
+			randnPsi= honda->psi+ distAng(generator);
+			
 
-			pathinCar = Rot.calcPathCoordGlobalToCar(honda->psi, road->iPath[i], randniPath);
-			pathinCarNext = Rot.calcPathCoordGlobalToCar(honda->psi, road->iPath[i + 1], honda->globalCoord);
+			pathinCar = Rot.calcPathCoordGlobalToCar(randnPsi, road->iPath[i], randniPath);
+			pathinCarNext = Rot.calcPathCoordGlobalToCar(randnPsi, road->iPath[i + 1], randniPath);
 
 		}
 		else

@@ -13,8 +13,9 @@ The  length of the path in is defined in the main() function.
 
 public:
 
-	Path();
+	Path(void);
 	Path(unsigned int Type1, unsigned int pathLength1);
+	~Path(void);
 	unsigned int Type;
 	unsigned int pathLength;
 	Coord globalCoord;
